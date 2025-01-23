@@ -1,0 +1,156 @@
+/* Layout */
+
+/* Sourced code: I asked Perplexity AI why there was a section of white space at the bottom of my screen and the AI provided the below code to eliminate it. From reading Stack Overflow my understanding is that Chrome creates extra space for the tab bar and these changes remove that space.*/
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto; /* Enables vertical scrolling in the body despite display: flex so that #sidebar { position: sticky} will work*/
+}
+/* End sourced code*/
+
+body {
+    display: flex;
+}
+
+#sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    width: 8.33vw;
+    min-width: 114px;
+    flex-shrink: 0;
+    padding-left: 32px;
+    padding-top: 64px;
+}
+
+#nav-curtain-draft-area {
+    position: relative;
+    width: 100vw;
+}
+
+#header-items {
+    display: flex;
+    gap: 24px;
+    padding-left: 4%;
+    margin-right: 32px;
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    padding-right: 32px;
+}
+
+#draft-area {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding-left: 4%;
+    padding-right: 5%;
+    justify-content: space-between;
+}
+
+#curtain {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1vh;
+    /* background-color: red; */
+    background-color: #FFFEFC;
+    transition: 800ms ease-in-out;
+}
+
+#writing-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 50vh;
+    z-index: -1;
+    /* background-color: red; */
+}
+
+#draft-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 30vh;
+    /* background-color: yellow; */
+}
+
+/* Appearance */
+
+body {
+    background-color: #FFFEFC;
+}
+
+#sidebar {
+    background-color: #F7F6F3;
+}
+
+#header {
+    background-color: #FFFEFC;
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#timer {
+    border: 2px #A4ACB3 solid;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #A4ACB3;
+}
+
+.fa-solid {
+    padding-right: 8px;
+    color: #A4ACB3;
+}
+
+#word-count {
+    border: 2px black solid;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#curtain {
+    border-bottom: 8px #F7F6F3 solid;
+}
+
+[contenteditable] {
+    outline: 0px solid transparent;
+  }
+
+#writing-area {
+    font-family: 'Zilla Slab', sans-serif;
+    font-size: 64px;
+    font-weight: 400;
+}
+
+#writing-area p {
+    margin-top: 0px;
+    margin-bottom: 16px;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: 600;
+    margin-bottom: 32px;
+}
+
+h2 {
+    font-family: 'Barlow', sans-serif;
+    font-size: 16px;
+}
+
+/*Tests*/
+
+#test-text {
+    font-size: 64px;
+}
