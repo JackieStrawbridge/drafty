@@ -1,6 +1,5 @@
-/* Layout */
+/* ////////// LAYOUT ////////// */
 
-/* Sourced code: I asked Perplexity AI why there was a section of white space at the bottom of my screen and the AI provided the below code to eliminate it. From reading Stack Overflow my understanding is that Chrome creates extra space for the tab bar and these changes remove that space.*/
 html, body {
     height: 100%;
     width: 100%;
@@ -8,7 +7,6 @@ html, body {
     padding: 0;
     overflow-y: auto; /* Enables vertical scrolling in the body despite display: flex so that #sidebar { position: sticky} will work*/
 }
-/* End sourced code*/
 
 body {
     display: flex;
@@ -18,11 +16,23 @@ body {
     position: sticky;
     top: 0;
     height: 100vh;
-    width: 8.33vw;
+    width: 12vw;
     min-width: 114px;
     flex-shrink: 0;
     padding-left: 32px;
     padding-top: 64px;
+}
+
+#label-and-toggle {
+    display: flex;
+    align-items: center;
+    flex-grow: 0;
+    gap: 16px;
+}
+
+label {
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 #nav-curtain-draft-area {
@@ -30,11 +40,17 @@ body {
     width: 100vw;
 }
 
+#header {
+    display: flex;
+    flex-direction: row-reverse;
+    padding-top: 2rem;
+    justify-content: space-between;
+}
+
 #header-items {
     display: flex;
     gap: 24px;
     padding-left: 4%;
-    margin-right: 32px;
 }
 
 nav {
@@ -53,12 +69,11 @@ nav {
     justify-content: space-between;
 }
 
-#curtain {
+#curtain, #curtain-static {
     position: absolute;
     left: 0;
     right: 0;
     height: 1vh;
-    /* background-color: red; */
     background-color: #FFFEFC;
     transition: 800ms ease-in-out;
 }
@@ -67,9 +82,9 @@ nav {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 50vh;
     z-index: -1;
-    /* background-color: red; */
+    height: 50vh;
+    transition: 200ms ease-in-out;
 }
 
 #draft-buttons {
@@ -77,10 +92,14 @@ nav {
     flex-direction: column;
     justify-content: flex-end;
     height: 30vh;
-    /* background-color: yellow; */
 }
 
-/* Appearance */
+#draft-options {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ////////// APPEARANCE ////////// */
 
 body {
     background-color: #FFFEFC;
@@ -90,33 +109,57 @@ body {
     background-color: #F7F6F3;
 }
 
-#header {
-    background-color: #FFFEFC;
+#header, #new-draft {
     font-family: 'Barlow', sans-serif;
     font-size: 16px;
     font-weight: 600;
+    background: none;
+}
+
+#new-draft {
+    border: none;
+    cursor: pointer;
+    color: #493DB8;
 }
 
 #timer {
+    display: flex;
+    align-items: center;
     border: 2px #A4ACB3 solid;
     padding-top: 16px;
     padding-bottom: 16px;
     padding-left: 8px;
     padding-right: 8px;
     color: #A4ACB3;
+    font-variant-numeric: tabular-nums;
 }
 
-.fa-solid {
+#timer p {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin: 0;
+}
+
+.fa-hourglass-end {
     padding-right: 8px;
     color: #A4ACB3;
+    line-height: 0;
+}
+
+.fa-pencil {
+    padding-right: 8px;
 }
 
 #word-count {
+    /* Reset margin to override user-agent stylesheet */
+    margin: 0px;
+    /* End reset margin */
     border: 2px black solid;
     padding-top: 16px;
     padding-bottom: 16px;
     padding-left: 8px;
     padding-right: 8px;
+    font-variant-numeric: tabular-nums;
 }
 
 #curtain {
@@ -125,21 +168,63 @@ body {
 
 [contenteditable] {
     outline: 0px solid transparent;
-  }
+}
 
-#writing-area {
+#writing-area, #draft-options > button {
     font-family: 'Zilla Slab', sans-serif;
-    font-size: 64px;
+    /* font-size: 64px; */
+    font-size: 8vh;
     font-weight: 400;
+    line-height: 10vh;
+}
+
+#draft-options > button {
+    border: none;
+    background: none;
+    text-align: left;
+    text-decoration: underline;
 }
 
 #writing-area p {
     margin-top: 0px;
-    margin-bottom: 16px;
+    margin-bottom: 0;
+}
+
+#about-content {
+    padding: 8vh;
+}
+
+/* Inspo source for below blockquote styling: https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/ */
+
+#about-content > blockquote {
+    font-family: 'Zilla Slab', sans-serif;
+    font-size: 1.4rem;
+    background: #F7F6F3;
+    border-left: 10px solid #493DB8;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+ 
+#about-content > blockquote p {
+    display: inline;
+}
+
+#about-content > p {
+    font-family: 'Zilla Slab', sans-serif;
+    font-size: 16px;
+}
+
+.draft-title {
+    font-family: 'Zilla Slab', sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    padding-top: 32px;
 }
 
 h1 {
-    font-size: 64px;
+    font-family: 'Zilla Slab', sans-serif;
+    font-size: 24px;
     font-weight: 600;
     margin-bottom: 32px;
 }
@@ -149,8 +234,234 @@ h2 {
     font-size: 16px;
 }
 
-/*Tests*/
+h2:not(#first-h2) {
+    padding-top: 16px;
+}
 
-#test-text {
-    font-size: 64px;
+#sidebar > p, label {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+}
+
+.save-draft-button, .copy-button, .clear-history-button {
+    font-family: 'Barlow', sans-serif;
+    border: none;
+    background: none;
+    margin: 4px;
+    padding-bottom: 8px;
+    border-bottom: 2px #493DB8 solid;
+    cursor: pointer;
+}
+
+.alert-button {
+    font-family: 'Barlow', sans-serif;
+    border-radius: 4px;
+    border: 1px #493DB8 solid;
+    padding: 4px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.alert-button:hover {
+    background-color: #493DB8;
+    color: white;
+}
+
+.history-draft {
+    font-family: 'Zilla Slab', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding-bottom: 3vh;
+    border-bottom: 1px #000 solid;
+}
+
+/* Dark mode library customization */
+.darkmode-layer, .darkmode-toggle {
+    z-index: 500;
+}
+
+.sidebar-link {
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    line-height: 22px;
+}
+
+#alert {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    margin: auto;
+    height: 20vh;
+    min-height: 96px;
+    width: 50vw;
+    min-width: 360px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    place-content: center;
+    border-radius: 4px;
+    padding: 24px;
+    text-align: center;
+    background-color: #F7F6F3;
+    filter: drop-shadow(#A4ACB3 2px 2px 2px);
+    font-family: 'Barlow', sans-serif;
+}
+
+h1 a {
+    text-decoration: none;
+    color: black;
+}
+
+#history-links a {
+    color: #0D66CC;
+}
+
+/* End dark mode library customization */
+
+/* ////////// TOGGLE SWITCH ////////// */
+
+/* Source: W3 schools, https://www.w3schools.com/howto/howto_css_switch.asp */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 32px;
+    height: 16px;
+}
+  
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+/* The slider */
+#toggle {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .8s;
+    transition: .8s;
+}
+  
+#toggle:before {
+    position: absolute;
+    content: "";
+    height: 12px;
+    width: 12px;
+    left: 2px;
+    bottom: 2px;
+    background-color: #011628;
+    -webkit-transition: .8s;
+    transition: .8s;
+}
+  
+input:checked + .slider {
+    background-color: #000;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #000;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+}
+  
+ /* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%; 
+}
+
+/* ////////// LINES VISIBLE SLIDER ////////// */
+
+#label-and-slider {
+    display: flex;
+    flex-direction: column;
+}
+
+#lines-slider {
+    appearance: none;
+    width: 90%;
+    height: 4px;
+    border-radius: 10px;
+    background: #011628;
+}
+
+#lines-slider:disabled {
+    appearance: none;
+    width: 90%;
+    height: 4px;
+    border-radius: 10px;
+    background: #ccc;
+}
+
+#lines-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: white;
+    border: 2px solid #011628;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+#lines-slider:disabled::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    background: #ccc;
+    width: 15px;
+    height: 15px;
+    border: none;
+    border-radius: 50%;
+}
+
+/* ////////// NEW DRAFT ALERT ////////// */
+
+.alert-button {
+    font-family: 'Barlow', sans-serif;
+    border-radius: 4px;
+    border: 1px #493DB8 solid;
+    padding: 4px;
+    margin: 4px;
+    cursor: pointer;
+}
+
+.alert-button:hover {
+    background-color: #493DB8;
+    color: white;
+}
+
+#alert {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    margin: auto;
+    height: 20vh;
+    min-height: 96px;
+    width: 50vw;
+    min-width: 360px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    place-content: center;
+    border-radius: 4px;
+    padding: 24px;
+    text-align: center;
+    background-color: #F7F6F3;
+    filter: drop-shadow(#A4ACB3 2px 2px 2px);
+    font-family: 'Barlow', sans-serif;
 }
