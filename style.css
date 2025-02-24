@@ -395,6 +395,10 @@ input:checked + .slider:before {
     flex-direction: column;
 }
 
+#slider-label {
+    color: #ccc;
+}
+
 #lines-slider {
     appearance: none;
     width: 90%;

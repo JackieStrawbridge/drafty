@@ -78,6 +78,9 @@ function triggerDelay() {
 function enableUpdateCurtain() {
     let linesSlider = document.querySelector("#lines-slider");
     linesSlider.disabled = false;
+
+    let sliderLabel = document.querySelector("#slider-label");
+    sliderLabel.style.color = "black";
 }
 
 //////// //////// //////// //////// SAVED DRAFT BEHAVIOR //////// //////// //////// ////////
