@@ -126,6 +126,8 @@ slider.addEventListener("input", (event) => {
 
 //////// //////// //////// //////// COUNTDOWN TIMER //////// //////// //////// ////////
 
+// is it overwhemling/panicky to show seconds ticking down?
+
 let timer = document.querySelector("#timer");
 timer.addEventListener("click", countdown);
 
