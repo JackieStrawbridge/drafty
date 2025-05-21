@@ -101,6 +101,10 @@ nav {
     flex-direction: column;
 }
 
+#lamott-quote {
+    padding-bottom: .5em;
+}
+
 /* ////////// APPEARANCE ////////// */
 
 body {
@@ -198,24 +202,20 @@ body {
     padding: 8vh;
 }
 
-/* Inspo source for below blockquote styling: https://css-tricks.com/snippets/css/simple-and-nice-blockquote-styling/ */
-
-#about-content > blockquote {
-    font-family: 'Zilla Slab', sans-serif;
-    font-size: 1.4rem;
-    border-left: 10px solid #493DB8;
-    margin: .75em 10px;
-    padding: 0.5em 10px;
-    quotes: "\201C""\201D""\2018""\2019";
-}
- 
-#about-content > blockquote p {
-    display: inline;
-}
-
-#about-content > p {
+#about-content p {
     font-family: 'Zilla Slab', sans-serif;
     font-size: 16px;
+}
+
+#lamott-quote blockquote {
+    font-family: 'Zilla Slab', sans-serif;
+    font-size: 1.4em;
+    line-height: 1.2em;
+    margin: 0px;
+}
+
+#lamott-quote p {
+    font-weight: 600;
 }
 
 .draft-title {
