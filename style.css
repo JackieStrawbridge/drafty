@@ -12,6 +12,14 @@ body {
     display: flex;
 }
 
+p {
+    max-width: 75ch;
+}
+
+blockquote {
+    max-width: 66ch;
+}
+
 #sidebar {
     position: sticky;
     top: 0;
